@@ -107,6 +107,9 @@ Thumbs.db
 *.key
 *.pem
 
+# ignore specific ReverseH4ck files (manually added)
+.idea/
+
 # --------------------------------------------------------
 # BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
 # --------------------------------------------------------
