@@ -1,11 +1,38 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>INDEX Projet Web</title>
-    <link rel="icon" href="assets/favicon.png" type="image/png"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Simple</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<h1>Hello World!</h1>
-<h2>Projet Web</h2>
+<header>
+    <h1>La BTS Boutique</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="panier">
+        <button id="boutonPanier">Panier (<span id="compteurPanier">0</span>)</button>
+        <div class="articles-panier" id="articlesPanier"></div>
+    </div>
+</header>
+
+<main>
+    <h2>Nos Produits</h2>
+    <div class="produits" id="produits">
+        <!-- Les produits seront ajoutés ici dynamiquement -->
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 La BTS Boutique. Tous droits réservés.</p>
+</footer>
+
+<script src="index.js"></script>
 </body>
 </html>
