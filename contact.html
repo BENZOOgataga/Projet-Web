@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/logo.png" type="image/gif" sizes="16x16">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact - BOUTIQUE</title>
+    <style>
+        /* Style général */
+        body {
+            font-family: 'Abel', sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        /* Disposition des colonnes */
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .form-container, .contact-info {
+            flex: 1;
+            max-width: 48%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Formulaire */
+        .form-group input, .form-group textarea {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Section contact-info */
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+            }
+
+            .form-container, .contact-info {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main class="container">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fill">
+            <a class="navbar-brand" href="#"><img src="images/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about_us.html">À propos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="contact" class="my-5">
+        <h1 class="text-center my-5">Contactez-nous</h1>
+
+        <div class="contact-section">
+            <!-- Formulaire de contact -->
+            <div class="form-container">
+                <h3>Formulaire de Contact</h3>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+
+            <!-- Informations de contact -->
+            <div class="contact-info">
+                <h3>Informations de Contact</h3>
+                <p><b>Adresse :</b> 123 Rue de la Boutique, Paris, France</p>
+                <p><b>Téléphone :</b> +33 1 23 45 67 89</p>
+                <p><b>Email :</b> contact@boutique.com</p>
+                <p><b>Heures d'ouverture :</b> Lundi - Vendredi, 9h - 18h</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="text-center py-4">
+    <strong>ReverseH4ck</strong> &copy; All Right reserved
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy1sB8l+Yg6G5WZtV6hTofY9t8GCmSgpt/mI3+6r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0g6YGLPpJ5sK8B6w8Xw1ffWf5Fvcgfbh3RQE/TmYWz3JlLx0" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-oP6IuIq2gJhFjkJrQ46QOrQ9V+3UjeKVs8kF+9gh5g4vFrhB2P1g7k5LfZfo2drA" crossorigin="anonymous"></script>
+</body>
+
+</html>
