@@ -109,6 +109,8 @@ Thumbs.db
 
 # ignore specific ReverseH4ck files (manually added)
 .idea/
+.idea/*
+config.json
 
 # --------------------------------------------------------
 # BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
