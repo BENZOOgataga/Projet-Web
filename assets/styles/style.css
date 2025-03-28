@@ -1,250 +1,256 @@
-    body{
-        font-family: 'Abel', sans-serif;
-        font-size: large;
-        background-color: rgb(255, 239, 239);
-    }
+body {
+  font-family: "Abel", sans-serif;
+  font-size: large;
+  background-color: rgb(255, 239, 239);
+}
 
-    h1, h2, h3, h4, h5, h6, p{
-        cursor: pointer;
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  cursor: pointer;
+}
 
-    a.nav-link {
-        margin-right: 20px;
-        font-weight: 700;
-    }
-    .navbar-light .navbar-nav .active>.nav-link:hover{
-        color: #ffffff;
-    }
+a.nav-link {
+  margin-right: 20px;
+  font-weight: 700;
+}
+.navbar-light .navbar-nav .active > .nav-link:hover {
+  color: #ffffff;
+}
 
-    nav.fill ul li a.nav-link {
-        transition: all .5s;
-    }
+nav.fill ul li a.nav-link {
+  transition: all 0.5s;
+}
 
-    nav.fill ul li a.nav-link:after {
-        text-align: left;
-        content: '.';
-        margin: 0;
-        opacity: 0;
-    }
+nav.fill ul li a.nav-link:after {
+  text-align: left;
+  content: ".";
+  margin: 0;
+  opacity: 0;
+}
 
-    nav.fill ul li a.nav-link:hover {
-        color: white;
-        z-index: 1;
-    }
+nav.fill ul li a.nav-link:hover {
+  color: white;
+  z-index: 1;
+}
 
-    nav.fill ul li a.nav-link:hover:after {
-        z-index: -10;
-        animation: fill 1s forwards;
-        opacity: 1;
-    }
+nav.fill ul li a.nav-link:hover:after {
+  z-index: -10;
+  animation: fill 1s forwards;
+  opacity: 1;
+}
 
-    nav.fill ul li a.nav-link {
-          position: relative;
-    }
+nav.fill ul li a.nav-link {
+  position: relative;
+}
 
-    nav.fill ul li a.nav-link:after {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
-          width: 0%;
-          content: '.';
-          color: transparent;
-          background: #aaa;
-          height: 1px;
-    }
+nav.fill ul li a.nav-link:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: ".";
+  color: transparent;
+  background: #aaa;
+  height: 1px;
+}
 
-    section#mack-book{
-        margin-bottom: 100px;
-    }
+section#mack-book {
+  margin-bottom: 100px;
+}
 
-    .carousel-indicators li{
-        width: 20px;
-        height: 8px;
-        border: none;
-        border-radius: 4px;
-        background-color: #CECECE;
-    }
-    .carousel-indicators li.active{
-        width: 35px;
-        height: 10px;
-        border-radius: 8px;
-        background-image: linear-gradient(145deg,#f1c40f,#e67e22);
-    }
+.carousel-indicators li {
+  width: 20px;
+  height: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #cecece;
+}
+.carousel-indicators li.active {
+  width: 35px;
+  height: 10px;
+  border-radius: 8px;
+  background-image: linear-gradient(145deg, #f1c40f, #e67e22);
+}
 
-    .mack {
-        padding: 10% 4%;
-    }
+.mack {
+  padding: 10% 4%;
+}
 
-    .mack p {
-        margin-bottom: 30px;
-    }
+.mack p {
+  margin-bottom: 30px;
+}
 
-    .mack a.mack-btn {
-        font-weight: bold;
-        background-color: black;
-        color: white;
-        border: 2px solid black;
-        padding: 15px;
-        border-radius: 10px;
-        text-transform: uppercase;
-        transition: 1s;
-        cursor: pointer;
-    }
+.mack a.mack-btn {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  transition: 1s;
+  cursor: pointer;
+}
 
-    .mack a.mack-btn:hover {
-        background-color: white;
-        color: black;
-    }
+.mack a.mack-btn:hover {
+  background-color: white;
+  color: black;
+}
 
-    svg.bi.bi-arrow-right {
-        color: white;
-        font-size: 20px;
-        transition: .5s;
-    }
+svg.bi.bi-arrow-right {
+  color: white;
+  font-size: 20px;
+  transition: 0.5s;
+}
 
-    a.mack-btn:hover svg.bi.bi-arrow-right{
-        transform: rotate(-180deg);
-        color: black;
-    }
+a.mack-btn:hover svg.bi.bi-arrow-right {
+  transform: rotate(-180deg);
+  color: black;
+}
 
-    section#smartphone{
-        margin-bottom: 100px;
-    }
+section#smartphone {
+  margin-bottom: 100px;
+}
 
-    .smartphone-header{
-        margin-bottom: 50px;
-    }
+.smartphone-header {
+  margin-bottom: 50px;
+}
 
-    .smartphone-header h5{
-        font-weight: bold;
-        cursor: pointer;
-        background: -webkit-linear-gradient(145deg,#f1c40f,#e67e22);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+.smartphone-header h5 {
+  font-weight: bold;
+  cursor: pointer;
+  background: -webkit-linear-gradient(145deg, #f1c40f, #e67e22);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    a.smartphone-btn {
-        font-weight: bold;
-        background-color: black;
-        color: white;
-        border: 2px solid black;
-        padding: 15px;
-        border-radius: 10px;
-        text-transform: uppercase;
-        transition: 1s;
-        cursor: pointer;
-    }
+a.smartphone-btn {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  transition: 1s;
+  cursor: pointer;
+}
 
-    a.smartphone-btn:hover {
-        background-color: white;
-        color: black;
-    }
+a.smartphone-btn:hover {
+  background-color: white;
+  color: black;
+}
 
-    a.smartphone-btn:hover svg.bi.bi-arrow-right{
-        transform: rotate(-180deg);
-        color: black;
-    }
+a.smartphone-btn:hover svg.bi.bi-arrow-right {
+  transform: rotate(-180deg);
+  color: black;
+}
 
-    .promo-badge {
-        background-color: red;
-        color: white;
-        font-weight: bold;
-        font-size: 13px;
-        padding: 5px 10px;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        border-radius: 5px;
-    }
+.promo-badge {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 5px 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 5px;
+}
 
-    .promo-card {
-        box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
-        border: 2px solid #ff4747;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-    }
+.promo-card {
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+  border: 2px solid #ff4747;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
 
-    .promo-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
-    }
+.promo-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+}
 
-    .text-danger {
-        color: red;
-    }
+.text-danger {
+  color: red;
+}
 
-    section#laptop{
-        margin-bottom: 100px;
-    }
+section#laptop {
+  margin-bottom: 100px;
+}
 
-    .laptop-header{
-        margin-bottom: 50px;
-    }
+.laptop-header {
+  margin-bottom: 50px;
+}
 
+.laptop-header h5 {
+  font-weight: bold;
+  cursor: pointer;
+  background: -webkit-linear-gradient(145deg, #f1c40f, #e67e22);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .laptop-header h5{
-        font-weight: bold;
-        cursor: pointer;
-        background: -webkit-linear-gradient(145deg,#f1c40f,#e67e22);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+a.laptop-btn {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  transition: 1s;
+  cursor: pointer;
+}
 
-    a.laptop-btn {
-        font-weight: bold;
-        background-color: black;
-        color: white;
-        border: 2px solid black;
-        padding: 15px;
-        border-radius: 10px;
-        text-transform: uppercase;
-        transition: 1s;
-        cursor: pointer;
-    }
+a.laptop-btn:hover {
+  background-color: white;
+  color: black;
+}
 
-    a.laptop-btn:hover {
-        background-color: white;
-        color: black;
-    }
+a.laptop-btn:hover svg.bi.bi-arrow-right {
+  transform: rotate(-180deg);
+  color: black;
+}
 
-    a.laptop-btn:hover svg.bi.bi-arrow-right{
-        transform: rotate(-180deg);
-        color: black;
-    }
+hr {
+  width: 130px;
+  background-image: linear-gradient(145deg, #f1c40f, #e67e22);
+  height: 10px;
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 50px;
+}
+.categories-card {
+  box-shadow: 0px 5px 15px gray;
+  padding: 5%;
+}
+.mt-5 {
+  margin-top: 6rem !important;
+}
 
-    hr{
-        width: 130px;
-        background-image: linear-gradient(145deg,#f1c40f,#e67e22);
-        height: 10px;
-        border: none;
-        border-radius: 50px;
-        margin-bottom: 50px;
-    }
-    .categories-card {
-        box-shadow: 0px 5px 15px gray;
-        padding: 5%;
-    }
-    .mt-5{
-        margin-top: 6rem!important;
-    }
+footer {
+  padding: 5%;
+}
 
-    footer {
-        padding: 5%;
-    }
-
-    @-webkit-keyframes fill {
-        0% {
-          width: 0%;
-          height: 1px;
-        }
-        50% {
-          width: 100%;
-          height: 1px;
-        }
-        100% {
-          width: 100%;
-          height: 100%;
-          background: #333;
-        }
-      }
+@-webkit-keyframes fill {
+  0% {
+    width: 0%;
+    height: 1px;
+  }
+  50% {
+    width: 100%;
+    height: 1px;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    background: #333;
+  }
+}
