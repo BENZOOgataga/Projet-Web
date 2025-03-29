@@ -48,6 +48,7 @@ try {
             FOREIGN KEY (user_id) REFERENCES users(id)
         )",
 
+
         // Tables pour les articles de commande
         "CREATE TABLE IF NOT EXISTS order_items (
             order_id INT PRIMARY KEY,
