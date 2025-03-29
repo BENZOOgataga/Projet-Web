@@ -40,8 +40,7 @@ try {
 
         // Tables pour les articles de commande
         "CREATE TABLE IF NOT EXISTS order_items (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            order_id INT,
+            order_id INT PRIMARY KEY,
             article_id INT,
             quantity INT NOT NULL,
             price DECIMAL(10,2) NOT NULL,
@@ -56,7 +55,6 @@ try {
     }
 
     echo "Database tables created successfully";
-
 } catch (PDOException $e) {
     die("Error creating database tables: " . $e->getMessage());
 }
