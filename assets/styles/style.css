@@ -111,6 +111,16 @@ body {
   font-weight: 500;
 }
 
+.promo-card {
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+  border: 2px solid #ff4747;
+}
+
+.card img {
+  height: 200px;
+  object-fit: contain;
+}
+
 .product-card img {
   width: 100%;
   height: 220px;

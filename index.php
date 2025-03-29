@@ -276,45 +276,14 @@ $accessories = getLatestProducts($pdo, 'accessories');
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/products.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const featuredContainer = document.getElementById('featured-products-grid');
-    const allProducts = [];
-
-    // Collect all products
-    for (const category in products) {
-      products[category].forEach(product => {
-        allProducts.push(product);
-      });
-    }
-
-    // Select random featured products
-    const featuredProducts = allProducts
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 3);
-
-    // Display featured products
-    featuredProducts.forEach(product => {
-      featuredContainer.innerHTML += `
-      <div class="product-card">
-        ${product.promo ? '<div class="promo-badge">En Promotion</div>' : ''}
-        <img src="${product.image}" alt="${product.name}">
-        <div class="product-info">
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="price">
-            ${product.originalPrice ?
-              `<span class="original-price">€${product.originalPrice}</span>
-               <span class="sale-price">€${product.price}</span>` :
-              `<span class="current-price">€${product.price}</span>`}
-          </div>
-          <a href="#" class="btn btn-primary">ACHETER</a>
-        </div>
-      </div>
-    `;
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            // Add to cart logic here
+            alert('Produit ajouté au panier !');
+        });
     });
-  });
 </script>
 </body>
 </html>
