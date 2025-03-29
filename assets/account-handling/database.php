@@ -37,6 +37,16 @@ try {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id)
         )",
+// Table contact
+        "CREATE TABLE IF NOT EXISTS contact (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name_contact VARCHAR(100), 
+            email_contact VARCHAR(100), 
+            subject_contact VARCHAR(100), 
+            message_contact VARCHAR(100),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )",
 
         // Tables pour les articles de commande
         "CREATE TABLE IF NOT EXISTS order_items (
@@ -47,6 +57,8 @@ try {
             FOREIGN KEY (order_id) REFERENCES orders(id),
             FOREIGN KEY (article_id) REFERENCES articles(id)
         )"
+
+
     ];
 
     // On exécute chaque requête pour créer les tables
