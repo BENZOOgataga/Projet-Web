@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['is_admin']) {
                 header('Location: ../admin/admin_index.php');
             } else {
-                header('Location: ../website/products.php');
+                header('Location: ../../index.php');
             }
             exit;
         } else {
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="../../assets/website/contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../assets/website/panier.html">Panier</a>
+                        <a class="nav-link" href="../website/cart.html">Panier</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mon Compte</a>
