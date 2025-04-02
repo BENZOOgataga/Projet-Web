@@ -118,7 +118,11 @@ try {
                                     €<?php echo number_format($product['price'], 2); ?>
                                 </span>
                             </div>
-                            <button class="btn btn-primary add-to-cart" data-product-id="<?php echo $product['id']; ?>">
+                            <button class="btn btn-primary add-to-cart" data-product-id="<?php echo $product['id']; ?>"
+                                    data-product-name="<?php echo htmlspecialchars($product['name']); ?>"
+                                    data-product-price="<?php echo $product['price']; ?>"
+                                    data-product-category="<?php echo htmlspecialchars($product['category']); ?>"
+                                    data-product-image="<?php echo htmlspecialchars($product['image_url']); ?>">
                                 Ajouter au panier
                             </button>
                         </div>
@@ -142,10 +146,28 @@ try {
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productId = this.dataset.productId;
-            // Fonction pour ajouter le produit au panier à faire
+            const productName = this.dataset.productName;
+            const productPrice = this.dataset.productPrice;
+            const productCategory = this.dataset.productCategory;
+            const productImage = this.dataset.productImage;
+
+            addToCart(productId, productName, productPrice, productCategory, productImage);
             alert('Produit ajouté au panier !');
         });
     });
+
+    function addToCart(id, name, price, category, image) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === id);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ id, name, price, category, image, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
 </script>
 </body>
 </html>
