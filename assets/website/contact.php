@@ -8,25 +8,45 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userId = $_SESSION['user_id'] ?? 0;
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $subject = $_POST['subject'] ?? '';
-    $message = $_POST['message'] ?? '';
+    $errors = [];
 
-    $sql = "INSERT INTO contact (user_id, name_contact, email_contact, subject_contact, message_contact)
+    if (empty($_POST['name'] ?? '')) {
+        $errors[] = 'Le champ "Votre nom" est requis.';
+    }
+    if (empty($_POST['email'] ?? '')) {
+        $errors[] = 'Le champ "Votre email" est requis.';
+    }
+    if (empty($_POST['subject'] ?? '')) {
+        $errors[] = 'Le champ "Sujet" est requis.';
+    }
+    if (empty($_POST['message'] ?? '')) {
+        $errors[] = 'Le champ "Votre message" est requis.';
+    }
+
+    if (count($errors) === 0) {
+        $success = true;
+        $userId = $_SESSION['user_id'] ?? 0;
+        $name = $_POST['name'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $subject = $_POST['subject'] ?? '';
+        $message = $_POST['message'] ?? '';
+
+        $sql = "INSERT INTO contact (user_id, name_contact, email_contact, subject_contact, message_contact)
             VALUES (:user_id, :name_contact, :email_contact, :subject_contact, :message_contact)";
 
-    $stmt = $pdo->prepare($sql);
-$stmt->execute([
-':user_id' => $userId,
-':name_contact' => $name,
-':email_contact' => $email,
-':subject_contact' => $subject,
-':message_contact' => $message
-]);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':user_id' => $userId,
+            ':name_contact' => $name,
+            ':email_contact' => $email,
+            ':subject_contact' => $subject,
+            ':message_contact' => $message
+        ]);
 
-echo "<p>Merci ! Votre message a été envoyé.</p>";
+        $_SESSION['success'] = "Votre message a été envoyé avec succès !";
+        header('Location: contact.php');
+        exit;
+    }
 }
 ?>
 
@@ -85,6 +105,14 @@ echo "<p>Merci ! Votre message a été envoyé.</p>";
                     <div class="col-lg-6">
                         <div class="bg-white p-4 rounded shadow-sm h-100">
                         <h3 class="h5 mb-4">Envoyez-nous un message</h3>
+
+                            <?php if (isset($_SESSION['success'])): ?>
+                                <div class="alert alert-success">
+                                    <?php echo $_SESSION['success']; ?>
+                                    <?php unset($_SESSION['success']); // Supprime le message après avoir été affiché ?>
+                                </div>
+                            <?php endif; ?>
+
                         <form method="POST" action="contact.php">
                             <div class="mb-3">
                                     <input type="text" name="name" class="form-control" placeholder="Votre nom" required>
