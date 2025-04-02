@@ -6,4 +6,4 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES => false
 ];
 
-$pdo = new PDO("mysql:host=localhost;dbname=webproject;charset=utf8mb4", "root", "", $options);
+$pdo = new PDO("mysql:host=localhost;dbname=webproject;charset=utf8mb4", "root", "root", $options);

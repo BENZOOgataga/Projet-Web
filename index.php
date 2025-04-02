@@ -137,8 +137,11 @@ $accessories = getLatestProducts($pdo, 'accessories');
             <?php if ($phone['is_promo']): ?>
               <div class="promo-badge">En Promotion</div>
             <?php endif; ?>
-            <img src="<?php echo htmlspecialchars($phone['image_url']); ?>" alt="<?php echo htmlspecialchars($phone['name']); ?>">
-            <div class="product-info">
+              <img src="<?php echo (!empty($phone['image_url']))
+                  ? 'assets/images/products/' . htmlspecialchars($phone['category']) . '/' . htmlspecialchars($phone['image_url'])
+                  : 'assets/images/default.png'; ?>"
+                   alt="<?php echo htmlspecialchars($phone['name']); ?>">
+              <div class="product-info">
               <h3><?php echo htmlspecialchars($phone['name']); ?></h3>
               <p><?php echo htmlspecialchars($phone['description']); ?></p>
               <div class="price">
@@ -170,8 +173,11 @@ $accessories = getLatestProducts($pdo, 'accessories');
             <?php if ($laptop['is_promo']): ?>
               <div class="promo-badge">En Promotion</div>
             <?php endif; ?>
-            <img src="<?php echo htmlspecialchars($laptop['image_url']); ?>" alt="<?php echo htmlspecialchars($laptop['name']); ?>">
-            <div class="product-info">
+              <img src="<?php echo (!empty($laptop['image_url']))
+                  ? 'assets/images/products/' . htmlspecialchars($phone['category']) . '/' . htmlspecialchars($phone['image_url'])
+                  : 'assets/images/default.png'; ?>"
+                   alt="<?php echo htmlspecialchars($laptop['name']); ?>">
+              <div class="product-info">
               <h3><?php echo htmlspecialchars($laptop['name']); ?></h3>
               <p><?php echo htmlspecialchars($laptop['description']); ?></p>
               <div class="price">
@@ -203,8 +209,11 @@ $accessories = getLatestProducts($pdo, 'accessories');
             <?php if ($accessory['is_promo']): ?>
               <div class="promo-badge">En Promotion</div>
             <?php endif; ?>
-            <img src="<?php echo htmlspecialchars($accessory['image_url']); ?>" alt="<?php echo htmlspecialchars($accessory['name']); ?>">
-            <div class="product-info">
+              <img src="<?php echo (!empty($accessory['image_url']))
+                  ? 'assets/images/products/' . htmlspecialchars($phone['category']) . '/' . htmlspecialchars($phone['image_url'])
+                  : 'assets/images/default.png'; ?>"
+                   alt="<?php echo htmlspecialchars($accessory['name']); ?>">
+              <div class="product-info">
               <h3><?php echo htmlspecialchars($accessory['name']); ?></h3>
               <p><?php echo htmlspecialchars($accessory['description']); ?></p>
               <div class="price">

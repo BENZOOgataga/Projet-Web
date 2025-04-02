@@ -102,7 +102,9 @@ try {
                         <?php if ($product['is_promo']): ?>
                             <div class="promo-badge">Promo</div>
                         <?php endif; ?>
-                        <img src="../images/products/<?php echo htmlspecialchars($product['category']); ?>/<?php echo htmlspecialchars($product['image'] ?? 'default.jpg'); ?>"
+                        <img src="<?php echo (!empty($product['image_url']))
+                            ? '../images/products/' . htmlspecialchars($product['category']) . '/' . htmlspecialchars($product['image_url'])
+                            : '../images/default.png'; ?>"
                              alt="<?php echo htmlspecialchars($product['name']); ?>">
                         <div class="product-info">
                             <h3><?php echo htmlspecialchars($product['name']); ?></h3>
