@@ -1,16 +1,17 @@
 <?php
 require_once '../account-handling/settings.php';
 
-// Get category from URL parameter, default to 'all'
+// Récupérer la catégorie depuis le paramètre d'URL, par défaut 'all'
 $category = isset($_GET['category']) ? $_GET['category'] : 'all';
 
-// Build the SQL query based on category
+// Build la requête SQL en fonction de la catégorie
 $sql = "SELECT * FROM articles WHERE 1=1";
 if ($category !== 'all') {
     $sql .= " AND category = :category";
 }
 $sql .= " ORDER BY created_at DESC";
 
+// Préparer et exécuter la requête
 try {
     $stmt = $pdo->prepare($sql);
     if ($category !== 'all') {
@@ -141,7 +142,7 @@ try {
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productId = this.dataset.productId;
-            // Add to cart logic here
+            // Fonction pour ajouter le produit au panier à faire
             alert('Produit ajouté au panier !');
         });
     });
