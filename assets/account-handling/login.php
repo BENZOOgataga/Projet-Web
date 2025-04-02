@@ -1,14 +1,21 @@
 <?php
-require_once __DIR__ . '/settings.php';
 session_start();
+
+// Vérification de s'il y a déjà une session active
+if (isset($_SESSION['user_id'])) {
+    echo "<p>Vous êtes déjà connecté. Veuillez d'abord vous déconnecter si vous souhaitez utiliser un autre compte.</p>";
+    exit;
+}
+
+require_once __DIR__ . '/settings.php';
 
 $error = null;
 $success = null;
 
+// Traitement du formulaire de connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $remember = isset($_POST['remember']);
 
     try {
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
@@ -19,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['is_admin'] = (bool)$user['is_admin'];
-
-            // On redirige vers la page d'accueil ou le tableau de bord admin selon le statut
             if ($user['is_admin']) {
                 header('Location: ../admin/admin_index.php');
             } else {
@@ -28,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             exit;
         } else {
-            $error = "Nom d'utilisateur ou mot de passe incorrect";
+            $error = "Incorrect username or password.";
         }
     } catch (PDOException $e) {
-        $error = "Erreur de connexion à la base de données";
+        $error = "Database connection error.";
     }
 }
 ?>
