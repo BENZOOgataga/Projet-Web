@@ -1,3 +1,35 @@
+<?php
+session_start();
+require_once '../account-handling/settings.php';
+
+if (!isset($_SESSION['user_id'])) {
+    echo "<p>Vous devez vous connecter pour pouvoir nous contacter.</p>";
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userId = $_SESSION['user_id'] ?? 0;
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $subject = $_POST['subject'] ?? '';
+    $message = $_POST['message'] ?? '';
+
+    $sql = "INSERT INTO contact (user_id, name_contact, email_contact, subject_contact, message_contact)
+            VALUES (:user_id, :name_contact, :email_contact, :subject_contact, :message_contact)";
+
+    $stmt = $pdo->prepare($sql);
+$stmt->execute([
+':user_id' => $userId,
+':name_contact' => $name,
+':email_contact' => $email,
+':subject_contact' => $subject,
+':message_contact' => $message
+]);
+
+echo "<p>Merci ! Votre message a été envoyé.</p>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -52,24 +84,32 @@
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="bg-white p-4 rounded shadow-sm h-100">
-                            <h3 class="h5 mb-4">Envoyez-nous un message</h3>
-                            <form>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Votre nom" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Votre email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Sujet" required>
-                                </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" rows="5" placeholder="Votre message" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Envoyer</button>
-                            </form>
-                        </div>
+                        <h3 class="h5 mb-4">Envoyez-nous un message</h3>
+                        <form method="POST" action="contact.php">
+                            <div class="mb-3">
+                                <label>
+                                    <input type="text" name="name" class="form-control" placeholder="Votre nom" required>
+                                </label>
+                            </div>
+                            <div class="mb-3">
+                                <label>
+                                    <input type="email" name="email" class="form-control" placeholder="Votre email" required>
+                                </label>
+                            </div>
+                            <div class="mb-3">
+                                <label>
+                                    <input type="text" name="subject" class="form-control" placeholder="Sujet" required>
+                                </label>
+                            </div>
+                            <div class="mb-3">
+                                <label>
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Votre message" required></textarea>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
                     </div>
+                </div>
                     <div class="col-lg-6">
                         <div class="bg-white p-4 rounded shadow-sm h-100">
                             <h3 class="h5 mb-4">Informations de contact</h3>
