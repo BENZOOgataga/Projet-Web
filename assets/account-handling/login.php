@@ -1,9 +1,11 @@
 <?php
 session_start();
 require_once __DIR__ . '/settings.php';
+require_once __DIR__ . '/../utils/notifications.php';
 
 $error = null;
 $alreadyLoggedIn = false;
+$flash = getFlash();
 
 // Vérification de si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
@@ -94,6 +96,12 @@ if (!$alreadyLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if ($error): ?>
                     <div class="alert alert-danger" role="alert">
                         <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($flash): ?>
+                    <div class="alert alert-<?php echo htmlspecialchars($flash['type']); ?>" role="alert">
+                        <?php echo htmlspecialchars($flash['message']); ?>
                     </div>
                 <?php endif; ?>
                 <div class="card shadow-sm">

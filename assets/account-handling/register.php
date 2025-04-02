@@ -1,4 +1,41 @@
-<!-- register.php -->
+<?php
+require_once __DIR__ . '/settings.php';
+require_once __DIR__ . '/../utils/notifications.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    if (empty($username) || empty($email) || empty($password)) {
+        $error = "Tous les champs sont requis.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Format d'email invalide.";
+    } elseif ($password !== $confirm_password) {
+        $error = "Les mots de passe ne correspondent pas.";
+    } elseif (!isset($_POST['terms'])) {
+        $error = "Vous devez accepter les conditions d'utilisation.";
+    } else {
+        $user_exist = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ? LIMIT 1");
+        $user_exist->execute([$username, $email]);
+
+        if ($user_exist->rowCount() > 0) {
+            $error = "Ce nom d'utilisateur ou cet email existe déjà.";
+        } else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+            $stmt->execute([$username, $email, $hashed_password]);
+
+            setFlash('success', 'Inscription réussie ! Vous pouvez maintenant vous connecter.');
+
+            header("Location: login.php");
+            exit;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

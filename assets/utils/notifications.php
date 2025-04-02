@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 function setFlash($type, $message) {
     $_SESSION['flash'] = [
         'type' => $type,
