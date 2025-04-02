@@ -87,24 +87,16 @@ echo "<p>Merci ! Votre message a été envoyé.</p>";
                         <h3 class="h5 mb-4">Envoyez-nous un message</h3>
                         <form method="POST" action="contact.php">
                             <div class="mb-3">
-                                <label>
                                     <input type="text" name="name" class="form-control" placeholder="Votre nom" required>
-                                </label>
                             </div>
                             <div class="mb-3">
-                                <label>
                                     <input type="email" name="email" class="form-control" placeholder="Votre email" required>
-                                </label>
                             </div>
                             <div class="mb-3">
-                                <label>
                                     <input type="text" name="subject" class="form-control" placeholder="Sujet" required>
-                                </label>
                             </div>
                             <div class="mb-3">
-                                <label>
                                     <textarea class="form-control" name="message" rows="5" placeholder="Votre message" required></textarea>
-                                </label>
                             </div>
                             <button type="submit" class="btn btn-primary">Envoyer</button>
                         </form>
