@@ -69,6 +69,21 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </nav>
   </header>
 
+  <?php if (isset($_GET['login']) && $_GET['login'] === 'success'): ?>
+      <div class="notification notification-success show" id="loginNotification">
+          Connexion réussie ! Bienvenue sur ReverseH4ck
+      </div>
+
+      <script>
+          setTimeout(() => {
+              const notification = document.getElementById('loginNotification');
+              notification.classList.remove('show');
+              // Suppression de la notification après 3 secondes
+              setTimeout(() => notification.remove(), 300);
+          }, 3000);
+      </script>
+  <?php endif; ?>
+
   <section class="hero">
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">

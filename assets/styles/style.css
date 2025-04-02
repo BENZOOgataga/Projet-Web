@@ -395,6 +395,37 @@ body {
   color: #16a34a;
 }
 
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification-success {
+  background-color: #10b981;
+}
+
+.notification-error {
+  background-color: #ef4444;
+}
+
+.notification-info {
+  background-color: #3b82f6;
+}
+
 .auth-links {
   text-align: center;
   margin-top: 1.5rem;

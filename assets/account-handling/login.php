@@ -27,7 +27,7 @@ if (!$alreadyLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['is_admin']) {
                 header('Location: ../admin/admin_index.php');
             } else {
-                header('Location: ../../index.php');
+                header("Location: ../../index.php?login=success");
             }
             exit;
         } else {
@@ -153,7 +153,6 @@ if (!$alreadyLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
