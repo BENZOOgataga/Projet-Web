@@ -1,19 +1,17 @@
 <?php
 session_start();
-
-// Vérification de s'il y a déjà une session active
-if (isset($_SESSION['user_id'])) {
-    echo "<p>Vous êtes déjà connecté. Veuillez d'abord vous déconnecter si vous souhaitez utiliser un autre compte.</p>";
-    exit;
-}
-
 require_once __DIR__ . '/settings.php';
 
 $error = null;
-$success = null;
+$alreadyLoggedIn = false;
 
-// Traitement du formulaire de connexion
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Vérification de si l'utilisateur est déjà connecté
+if (isset($_SESSION['user_id'])) {
+    $error = "Vous êtes déjà connecté. Veuillez d'abord vous déconnecter si vous souhaitez utiliser un autre compte.";
+    $alreadyLoggedIn = true;
+}
+
+if (!$alreadyLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -33,13 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             exit;
         } else {
-            $error = "Incorrect username or password.";
+            $error = "Nom d'utilisateur ou mot de passe incorrect.";
         }
     } catch (PDOException $e) {
         $error = "Database connection error.";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -75,11 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="../website/contact.php">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../website/cart.html">Panier</a>
+                        <a class="nav-link" href="../website/panier.html">Panier</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mon Compte</a>
-                    </li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user_logout.php">Me déconnecter</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -90,30 +91,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
+                <?php if ($error): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">Connexion</h2>
-                        <?php if ($error): ?>
-                            <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
-                        <?php endif; ?>
-                        <form method="post" novalidate>
+                        <h2 class="text-center mb-4">Login</h2>
+                        <form method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="username"
+                                        name="username"
+                                        required
+                                    <?php echo $alreadyLoggedIn ? 'disabled' : ''; ?>
+                                >
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input
+                                        type="password"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        required
+                                    <?php echo $alreadyLoggedIn ? 'disabled' : ''; ?>
+                                >
                             </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                                <label class="form-check-label" for="remember">Se souvenir de moi</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 mb-3">Se connecter</button>
+                            <button
+                                    type="submit"
+                                    class="btn btn-primary w-100 mb-3"
+                                <?php echo $alreadyLoggedIn ? 'disabled' : ''; ?>
+                            >
+                                Login
+                            </button>
                             <div class="text-center">
-                                <p class="mb-0">Pas encore inscrit ? <a href="register.php">Créer un compte</a></p>
+                                <p class="mb-0">Pas encore de compte? <a href="register.php">Créez-en un</a></p>
                             </div>
-                        </form>
+                        </form><br>
+
+                        <?php if ($alreadyLoggedIn): ?>
+                            <a href="user_logout.php" class="btn btn-disconnect w-100">
+                                Me déconnecter
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
