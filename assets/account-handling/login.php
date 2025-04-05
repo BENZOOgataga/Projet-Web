@@ -78,11 +78,9 @@ if (!$alreadyLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li class="nav-item">
                         <a class="nav-link" href="../website/panier.html">Panier</a>
                     </li>
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="user_logout.php">Me déconnecter</a>
-                        </li>
-                    <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mon Compte</a>
+                    </li>
                 </ul>
             </div>
         </div>
