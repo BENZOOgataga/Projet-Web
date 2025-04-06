@@ -93,7 +93,6 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <div class="col-md-6">
                 <h1>MacBook Pro</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum in iste rerum perferendis suscipit ipsa commodi.</p>
-                <a href="#" class="btn btn-primary laptop-btn">ACHETER</a>
               </div>
               <div class="col-md-6">
                 <img src="assets/images/banner-products/product-1.png" alt="MacBook Pro" class="img-fluid">
@@ -107,7 +106,6 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <div class="col-md-6">
                 <h1>Alexa</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum in iste rerum perferendis suscipit ipsa commodi.</p>
-                <a href="#" class="btn btn-primary laptop-btn">ACHETER</a>
               </div>
               <div class="col-md-6">
                 <img src="assets/images/banner-products/slider-1.png" alt="Alexa" class="img-fluid">
@@ -121,7 +119,6 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <div class="col-md-6">
                 <h1>JBL</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum in iste rerum perferendis suscipit ipsa commodi.</p>
-                <a href="#" class="btn btn-primary laptop-btn">ACHETER</a>
               </div>
               <div class="col-md-6">
                 <img src="assets/images/banner-products/slider-3.png" alt="JBL" class="img-fluid">
