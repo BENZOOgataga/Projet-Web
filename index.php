@@ -1,17 +1,23 @@
 <?php
+# fait appel au fichier config (settings.php)
+
 require_once 'assets/account-handling/settings.php';
 
+# recup les produits des catégories, pdo pour lier avec la db, 4 produits max à récupérer, requete sql pour selectionner produit d'une catégorie
 function getLatestProducts($pdo, $category, $limit = 4) {
     $stmt = $pdo->prepare("
         SELECT id, name, description, price, original_price, image_url, is_promo, category
         FROM articles 
-        WHERE category = ?
+        WHERE category = ? 
         ORDER BY created_at DESC
         LIMIT ?
     ");
+    # exécute requete avec paramètres catégories et limite, met sous tableau
+
     $stmt->execute([$category, $limit]);
     return $stmt->fetchAll();
 }
+# récup derniers produits de chaque catégorie
 
 $phones = getLatestProducts($pdo, 'phones');
 $laptops = getLatestProducts($pdo, 'laptops');
@@ -67,7 +73,13 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </nav>
   </header>
 
+
+  <!-- Connection réussie, enlève la notif au bout de 3sec -->
+
+
   <?php if (isset($_GET['login']) && $_GET['login'] === 'success'): ?>
+
+
       <div class="notification notification-success show" id="loginNotification">
           Connexion réussie ! Bienvenue sur ReverseH4ck
       </div>
@@ -76,11 +88,14 @@ $accessories = getLatestProducts($pdo, 'accessories');
           setTimeout(() => {
               const notification = document.getElementById('loginNotification');
               notification.classList.remove('show');
-              // Suppression de la notification après 3 secondes
               setTimeout(() => notification.remove(), 300);
           }, 3000);
       </script>
   <?php endif; ?>
+
+
+  <!-- Navbar qui défile -->
+
 
   <section class="hero">
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -134,7 +149,10 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </div>
   </section>
 
-  <!-- Smartphones Section -->
+
+  <!-- Partie téléphone -->
+
+
   <section id="smartphone" class="section-products">
     <div class="container">
       <div class="section-header">
@@ -184,7 +202,10 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </div>
   </section>
 
-  <!-- Laptops Section -->
+
+  <!-- Partie ordinateur -->
+
+
   <section id="laptop" class="section-products">
     <div class="container">
       <div class="section-header">
@@ -234,7 +255,10 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </div>
   </section>
 
-  <!-- Accessories Section -->
+
+  <!-- Parties accessoires -->
+
+
   <section id="accessories" class="section-products">
     <div class="container">
       <div class="section-header">
@@ -284,6 +308,10 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </div>
   </section>
 
+
+  <!-- Partie nos catégories, mène vers products.php -->
+
+
   <section id="categories" class="categories-section">
     <div class="container">
       <h2 class="text-center mb-5">Nos Catégories</h2>
@@ -332,6 +360,10 @@ $accessories = getLatestProducts($pdo, 'accessories');
     </div>
   </section>
 
+
+    <!-- footer reverseh4ck par défaut -->
+
+
   <footer class="footer">
     <div class="container">
       <div class="text-center">
@@ -339,6 +371,10 @@ $accessories = getLatestProducts($pdo, 'accessories');
       </div>
     </div>
   </footer>
+
+
+  <!-- Partie Js sur bootstrap (alertes et anim) -->
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
@@ -348,22 +384,22 @@ $accessories = getLatestProducts($pdo, 'accessories');
           buyButtons.forEach(button => {
               button.addEventListener('click', function(e) {
                   e.preventDefault();
-
+    // récupère info produits
                   const productId = this.dataset.productId;
                   const productName = this.dataset.productName;
                   const productPrice = this.dataset.productPrice;
                   const productCategory = this.dataset.productCategory;
                   const productImage = this.dataset.productImage;
-
+    // ajoute au panier
                   addToCart(productId, productName, productPrice, productCategory, productImage);
               });
           });
-
+    // ajoute au panier, regarde dans le local storage et crée panier vide si existe pas
           function addToCart(id, name, price, category, image) {
               let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    // vérifie si article déjà dans panier
               const existingItemIndex = cart.findIndex(item => item.id == id);
-
+    // si article déjà dans panier, quantité +1 sinon ajoute produit au panier
               if (existingItemIndex !== -1) {
                   cart[existingItemIndex].quantity += 1;
               } else {
@@ -376,12 +412,12 @@ $accessories = getLatestProducts($pdo, 'accessories');
                       quantity: 1
                   });
               }
-
+    // sauvegarde panier dans localstorage
               localStorage.setItem('cart', JSON.stringify(cart));
-
+    // article ajouté (notification)
               showNotification(`${name} a été ajouté au panier`, 'success');
           }
-
+    // affiche notification
           function showNotification(message, type = 'success') {
               let notificationArea = document.getElementById('notification-area');
               if (!notificationArea) {
@@ -403,7 +439,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
             ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         `;
-
+    // animation CSS affichage et disparition de la notif
               const style = document.createElement('style');
               style.innerHTML = `
             @keyframes slideInRight {
@@ -434,9 +470,9 @@ $accessories = getLatestProducts($pdo, 'accessories');
             }
         `;
               document.head.appendChild(style);
-
+    // ajoute notif dans la zone de notification
               notificationArea.appendChild(alertDiv);
-
+    // après 3 secondes, notification disparait
               setTimeout(() => {
                   if (alertDiv.parentNode) {
                       alertDiv.classList.remove('notification-slide-in');
