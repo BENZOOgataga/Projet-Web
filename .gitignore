@@ -126,3 +126,4 @@ config.json
 !.phpcs.xml.dist
 
 assets/account-handling/settings.php
+!/assets/account-handling/settings.php
