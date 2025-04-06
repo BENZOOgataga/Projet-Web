@@ -1,25 +1,27 @@
 <?php
 require_once '../account-handling/settings.php';
 
-// Récupérer la catégorie depuis le paramètre d'URL, par défaut 'all'
+// récupère la catégorie, prend 'toutes'
 $category = isset($_GET['category']) ? $_GET['category'] : 'all';
 
-// Build la requête SQL en fonction de la catégorie
+// requete sql selon la catégorie, pdo pour lier avec la db
 $sql = "SELECT * FROM articles WHERE 1=1";
 if ($category !== 'all') {
     $sql .= " AND category = :category";
 }
 $sql .= " ORDER BY created_at DESC";
 
-// Préparer et exécuter la requête
+
 try {
     $stmt = $pdo->prepare($sql);
     if ($category !== 'all') {
         $stmt->bindParam(':category', $category);
     }
+    // éxecute la requête
     $stmt->execute();
     $products = $stmt->fetchAll();
 } catch (PDOException $e) {
+    // message d'erreur si la requête échoue
     die("Error fetching products: " . $e->getMessage());
 }
 ?>
@@ -145,17 +147,18 @@ try {
 <script>
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
+            // récupère info produits
             const productId = this.dataset.productId;
             const productName = this.dataset.productName;
             const productPrice = this.dataset.productPrice;
             const productCategory = this.dataset.productCategory;
             const productImage = this.dataset.productImage;
-
+// notification article ajouté (alert)
             addToCart(productId, productName, productPrice, productCategory, productImage);
             alert('Produit ajouté au panier !');
         });
     });
-
+    // ajoute au panier, regarde dans le local storage et cherche si le compte possède un panier, ajoute +1 si existe pas
     function addToCart(id, name, price, category, image) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const existingItem = cart.find(item => item.id === id);
