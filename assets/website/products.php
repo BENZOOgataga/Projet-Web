@@ -59,7 +59,7 @@ try {
                         <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="panier.html">Panier</a>
+                        <a class="nav-link" href="panier.php">Panier</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../account-handling/login.php">Mon Compte</a>

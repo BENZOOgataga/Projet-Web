@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a class="nav-link" href="../website/contact.php">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../website/panier.html">Panier</a>
+                            <a class="nav-link" href="../website/panier.php">Panier</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Mon Compte</a>

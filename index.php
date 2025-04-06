@@ -57,7 +57,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <a class="nav-link" href="assets/website/contact.php">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="assets/website/panier.html">Panier</a>
+              <a class="nav-link" href="assets/website/panier.php">Panier</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="assets/account-handling/login.php">Mon Compte</a>

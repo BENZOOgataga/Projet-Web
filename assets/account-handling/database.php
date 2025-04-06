@@ -59,6 +59,20 @@ try {
         price DECIMAL(10, 2) NOT NULL,
         FOREIGN KEY (order_id) REFERENCES orders(id),
         FOREIGN KEY (article_id) REFERENCES articles(id)
+        )",
+
+        // Table pour panier utilisateur
+        "CREATE TABLE IF NOT EXISTS user_cart (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        product_id INT NOT NULL,
+        product_name VARCHAR(100) NOT NULL,
+        price DECIMAL(10, 2) NOT NULL,
+        category VARCHAR(50) NOT NULL,
+        image VARCHAR(255),
+        quantity INT NOT NULL DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id)
         )"
     ];
 

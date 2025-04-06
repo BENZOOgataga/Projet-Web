@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id'])) {
                             <a class="nav-link active" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="panier.html">Panier</a>
+                            <a class="nav-link" href="panier.php">Panier</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../account-handling/login.php">Mon Compte</a>
@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="panier.html">Panier</a>
+                        <a class="nav-link" href="panier.php">Panier</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../account-handling/login.php">Mon Compte</a>
