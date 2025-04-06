@@ -1,7 +1,6 @@
 <?php
 require_once 'assets/account-handling/settings.php';
 
-// Fetch latest products for each category
 function getLatestProducts($pdo, $category, $limit = 4) {
     $stmt = $pdo->prepare("
         SELECT id, name, description, price, original_price, image_url, is_promo, category
@@ -163,7 +162,21 @@ $accessories = getLatestProducts($pdo, 'accessories');
                   <span class="current-price">€<?php echo number_format($phone['price'], 2); ?></span>
                 <?php endif; ?>
               </div>
-              <a href="assets/website/product.php?id=<?php echo $phone['id']; ?>" class="btn btn-primary">ACHETER</a>
+                      <a href="#" class="btn btn-primary phone-btn"
+                         data-product-id="<?php echo $phone['id']; ?>"
+                         data-product-name="<?php echo htmlspecialchars($phone['name']); ?>"
+                         data-product-price="<?php echo $phone['price']; ?>"
+                         data-product-category="<?php echo $phone['category']; ?>"
+                         data-product-image="<?php echo $phone['image_url']; ?>">
+                          ACHETER
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right"
+                               fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd"
+                                    d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z" />
+                              <path fill-rule="evenodd"
+                                    d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z" />
+                          </svg>
+                      </a>
             </div>
           </div>
         <?php endforeach; ?>
@@ -199,7 +212,21 @@ $accessories = getLatestProducts($pdo, 'accessories');
                   <span class="current-price">€<?php echo number_format($laptop['price'], 2); ?></span>
                 <?php endif; ?>
               </div>
-              <a href="assets/website/product.php?id=<?php echo $laptop['id']; ?>" class="btn btn-primary">ACHETER</a>
+                  <a href="#" class="btn btn-primary phone-btn"
+                     data-product-id="<?php echo $laptop['id']; ?>"
+                     data-product-name="<?php echo htmlspecialchars($laptop['name']); ?>"
+                     data-product-price="<?php echo $laptop['price']; ?>"
+                     data-product-category="<?php echo $laptop['category']; ?>"
+                     data-product-image="<?php echo $laptop['image_url']; ?>">
+                      ACHETER
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right"
+                           fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                                d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z" />
+                          <path fill-rule="evenodd"
+                                d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z" />
+                      </svg>
+                  </a>
             </div>
           </div>
         <?php endforeach; ?>
@@ -235,7 +262,21 @@ $accessories = getLatestProducts($pdo, 'accessories');
                   <span class="current-price">€<?php echo number_format($accessory['price'], 2); ?></span>
                 <?php endif; ?>
               </div>
-              <a href="assets/website/product.php?id=<?php echo $accessory['id']; ?>" class="btn btn-primary">ACHETER</a>
+                  <a href="#" class="btn btn-primary phone-btn"
+                     data-product-id="<?php echo $accessory['id']; ?>"
+                     data-product-name="<?php echo htmlspecialchars($accessory['name']); ?>"
+                     data-product-price="<?php echo $accessory['price']; ?>"
+                     data-product-category="<?php echo $accessory['category']; ?>"
+                     data-product-image="<?php echo $accessory['image_url']; ?>">
+                      ACHETER
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right"
+                           fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                                d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z" />
+                          <path fill-rule="evenodd"
+                                d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z" />
+                      </svg>
+                  </a>
             </div>
           </div>
         <?php endforeach; ?>
@@ -301,14 +342,115 @@ $accessories = getLatestProducts($pdo, 'accessories');
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', function() {
-        const productId = this.dataset.productId;
-        // Add to cart logic here
-        alert('Produit ajouté au panier !');
+      document.addEventListener('DOMContentLoaded', function() {
+          const buyButtons = document.querySelectorAll('.phone-btn, .laptop-btn, .gaming-btn, .accessory-btn');
+
+          buyButtons.forEach(button => {
+              button.addEventListener('click', function(e) {
+                  e.preventDefault();
+
+                  const productId = this.dataset.productId;
+                  const productName = this.dataset.productName;
+                  const productPrice = this.dataset.productPrice;
+                  const productCategory = this.dataset.productCategory;
+                  const productImage = this.dataset.productImage;
+
+                  addToCart(productId, productName, productPrice, productCategory, productImage);
+              });
+          });
+
+          function addToCart(id, name, price, category, image) {
+              let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+              const existingItemIndex = cart.findIndex(item => item.id == id);
+
+              if (existingItemIndex !== -1) {
+                  cart[existingItemIndex].quantity += 1;
+              } else {
+                  cart.push({
+                      id: id,
+                      name: name,
+                      price: price,
+                      category: category,
+                      image: image,
+                      quantity: 1
+                  });
+              }
+
+              localStorage.setItem('cart', JSON.stringify(cart));
+
+              showNotification(`${name} a été ajouté au panier`, 'success');
+          }
+
+          function showNotification(message, type = 'success') {
+              let notificationArea = document.getElementById('notification-area');
+              if (!notificationArea) {
+                  notificationArea = document.createElement('div');
+                  notificationArea.id = 'notification-area';
+                  notificationArea.style.position = 'fixed';
+                  notificationArea.style.top = '20px';
+                  notificationArea.style.right = '20px';
+                  notificationArea.style.zIndex = '1050';
+                  notificationArea.style.width = '300px';
+                  document.body.appendChild(notificationArea);
+              }
+
+              const alertDiv = document.createElement('div');
+              alertDiv.className = `alert alert-${type} alert-dismissible fade show notification-slide-in`;
+              alertDiv.role = 'alert';
+              alertDiv.style.marginBottom = '10px';
+              alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+
+              const style = document.createElement('style');
+              style.innerHTML = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            .notification-slide-in {
+                animation: slideInRight 0.3s forwards;
+            }
+            .notification-slide-out {
+                animation: slideOutRight 0.3s forwards;
+            }
+        `;
+              document.head.appendChild(style);
+
+              notificationArea.appendChild(alertDiv);
+
+              setTimeout(() => {
+                  if (alertDiv.parentNode) {
+                      alertDiv.classList.remove('notification-slide-in');
+                      alertDiv.classList.add('notification-slide-out');
+
+                      setTimeout(() => {
+                          if (alertDiv.parentNode) {
+                              alertDiv.parentNode.removeChild(alertDiv);
+                          }
+                      }, 300);
+                  }
+              }, 3000);
+          }
       });
-    });
   </script>
 </body>
-
 </html>

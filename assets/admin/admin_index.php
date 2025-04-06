@@ -40,6 +40,7 @@ $recent_users = $pdo->query("
                 <a href="products.php" class="nav-link">Produits</a>
                 <a href="orders.php" class="nav-link">Commandes</a>
                 <a href="users.php" class="nav-link">Utilisateurs</a>
+                <a href="#" class="nav-link text-warning" id="clear-storage-btn">Vider le cache</a>
                 <a href="logout.php" class="nav-link text-danger">Se déconnecter</a>
             </nav>
         </div>
@@ -103,6 +104,16 @@ $recent_users = $pdo->query("
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('clear-storage-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Êtes-vous sûr de vouloir vider le cache local ? Cette action supprimera les données temporaires stockées dans votre navigateur.')) {
+                localStorage.clear();
+                sessionStorage.clear();
+                alert('Cache vidé avec succès !');
+            }
+        });
+    </script>
 </body>
 
 </html>
