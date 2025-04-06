@@ -2,21 +2,21 @@
 require_once 'auth.php';
 require_once '../account-handling/settings.php';
 
-// Handle user deletion
+// suppression utilisateur
 if (isset($_POST['delete_user'])) {
     $user_id = (int)$_POST['delete_user'];
     $stmt = $pdo->prepare("DELETE FROM users WHERE id = ? AND is_admin = 0");
     $stmt->execute([$user_id]);
 }
 
-// Handle admin status toggle
+// mettre status admin
 if (isset($_POST['toggle_admin'])) {
     $user_id = (int)$_POST['toggle_admin'];
     $stmt = $pdo->prepare("UPDATE users SET is_admin = NOT is_admin WHERE id = ?");
     $stmt->execute([$user_id]);
 }
 
-// Get users with pagination
+// pagination utilisateur
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $per_page = 10;
 $offset = ($page - 1) * $per_page;
