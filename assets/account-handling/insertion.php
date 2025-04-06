@@ -15,7 +15,7 @@ try {
         ('Nothing Phone 2', 'Design innovant avec interface Glyph', 649.99, 699.99, 'np2.png', 'phones', 20, TRUE),
 
         -- Ordinateurs portables
-        ('MacBook Pro M2', 'Ordinateur portable léger et puissant', 1299.99, 1499.99, 'm2.png', 'laptops', 15, TRUE),
+        ('MacBook Air M2', 'Ordinateur portable léger et puissant', 1299.99, 1499.99, 'm2.png', 'laptops', 15, TRUE),
         ('Dell XPS 15', 'Ordinateur portable professionnel', 1599.99, NULL, 'xps15.png', 'laptops', 20, FALSE),
         ('Lenovo ThinkPad X1', 'Fiabilité et performance pour professionnels', 1499.99, 1699.99, 'x1.png', 'laptops', 18, TRUE),
         ('HP Spectre x360', 'Convertible premium avec écran OLED', 1399.99, NULL, 'x360.png', 'laptops', 22, FALSE),
@@ -31,7 +31,7 @@ try {
 
         -- Accessoires
         ('Logitech MX Master 3', 'Souris sans fil ergonomique', 99.99, 109.99, 'mx3.png', 'accessories', 50, TRUE),
-        ('Logitech G502 HERO', 'Souris sans fil gaming', 99.99, 109.99, 'mx3.png', 'accessories', 50, FALSE),
+        ('Logitech G502 HERO', 'Souris sans fil gaming', 99.99, 109.99, 'g502.png', 'accessories', 50, FALSE),
         ('JBL Xtrem 40W', 'Enceinte JBL sans fil', 349.99, 379.99, 'xtrem40.png', 'accessories', 50, FALSE),
         ('Google Home', 'Assistant personnel intelligent', 99.99, 109.99, 'gh.png', 'accessories', 50, FALSE),
         ('AirPods Pro', 'Écouteurs sans fil avec réduction de bruit', 279.99, 299.99, 'p4.png', 'accessories', 30, TRUE),
