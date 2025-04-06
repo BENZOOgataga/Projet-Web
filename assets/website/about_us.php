@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
 
@@ -42,6 +46,12 @@
                             <a class="nav-link" href="../../assets/account-handling/login.php">Mon Compte</a>
                         </li>
                     </ul>
+
+                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../assets/admin/admin_index.php">Admin Dashboard</a>
+                        </li>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>

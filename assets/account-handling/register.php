@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="../website/products.php">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../assets/website/about_us.html">À propos</a>
+                        <a class="nav-link" href="../website/about_us.php">À propos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../website/contact.php">Contact</a>
@@ -83,6 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mon Compte</a>
                     </li>
+                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../assets/admin/admin_index.php">Admin Dashboard</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

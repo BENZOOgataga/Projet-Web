@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
                             <a class="nav-link" href="products.php">Produits</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about_us.html">À propos</a>
+                            <a class="nav-link" href="about_us.php">À propos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Contact</a>
@@ -46,6 +46,11 @@ if (!isset($_SESSION['user_id'])) {
                             <a class="nav-link" href="../account-handling/login.php">Mon Compte</a>
                         </li>
                     </ul>
+                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../assets/admin/admin_index.php">Admin Dashboard</a>
+                        </li>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>
@@ -160,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="products.php">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about_us.html">À propos</a>
+                        <a class="nav-link" href="about_us.php">À propos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>

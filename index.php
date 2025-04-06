@@ -1,4 +1,5 @@
 <?php
+session_start();
 # fait appel au fichier config (settings.php)
 
 require_once 'assets/account-handling/settings.php';
@@ -56,7 +57,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <a class="nav-link" href="assets/website/products.php">Produits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="assets/website/about_us.html">À propos</a>
+              <a class="nav-link" href="assets/website/about_us.php">À propos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="assets/website/contact.php">Contact</a>
@@ -67,6 +68,11 @@ $accessories = getLatestProducts($pdo, 'accessories');
             <li class="nav-item">
               <a class="nav-link" href="assets/account-handling/login.php">Mon Compte</a>
             </li>
+              <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="assets/admin/admin_index.php">Admin Dashboard</a>
+                  </li>
+              <?php endif; ?>
           </ul>
         </div>
       </div>
