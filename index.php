@@ -2,8 +2,7 @@
 require_once 'assets/account-handling/settings.php';
 
 // Fetch latest products for each category
-function getLatestProducts($pdo, $category, $limit = 3)
-{
+function getLatestProducts($pdo, $category, $limit = 3) {
     $stmt = $pdo->prepare("
         SELECT id, name, description, price, original_price, image_url, is_promo, category
         FROM articles 
