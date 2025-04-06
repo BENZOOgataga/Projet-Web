@@ -24,27 +24,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     try {
         $pdo->beginTransaction();
 
-        // Calculate total amount
+        // calcul montant total
         $totalAmount = 0;
         foreach ($cartItems as $item) {
             $totalAmount += $item['price'] * $item['quantity'];
         }
 
-        // Add tax (20%)
+        // ajoute tax 20%
         $totalAmount += $totalAmount * 0.2;
 
-        // Create order record
+        // créer une commande prépare et éxecute
         $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount, status) VALUES (?, ?, 'pending')");
         $stmt->execute([$userId, $totalAmount]);
         $orderId = $pdo->lastInsertId();
 
-        // Add order items
+        // ajoute les produits dans la commande
         $stmt = $pdo->prepare("INSERT INTO order_items (order_id, article_id, quantity, price) VALUES (?, ?, ?, ?)");
         foreach ($cartItems as $item) {
             $stmt->execute([$orderId, $item['id'], $item['quantity'], $item['price']]);
         }
 
-        // Clear user's cart
+        // efface le panier de l'utilisateur
         $stmt = $pdo->prepare("DELETE FROM user_cart WHERE user_id = ?");
         $stmt->execute([$userId]);
 
@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -213,6 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             overflow: hidden;
         }
     </style>
+
+
 </head>
 <body>
 <header class="header">
@@ -254,7 +257,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <h1 class="text-center mb-4">Votre Panier</h1>
     <hr class="mb-4">
 
+
     <div id="notification-area" style="position: fixed; top: 20px; right: 20px; z-index: 1050; width: 300px;"></div>
+
 
     <?php if ($flash): ?>
         <div class="alert alert-<?php echo htmlspecialchars($flash['type']); ?>" role="alert">
@@ -280,7 +285,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <?php endif; ?>
 
     <div id="cart-items-container">
-        <!-- Les articles seront ajoutés ici dynamiquement avec JavaScript -->
+
+
     </div>
 
     <div id="empty-cart-message" class="empty-cart">
@@ -317,7 +323,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </div>
 </section>
 
-<!-- Here lied the notifications container -->
+
 
 <footer class="footer">
     <div class="container">
@@ -326,6 +332,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         </div>
     </div>
 </footer>
+
+<!-- JS  -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -338,10 +346,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         <?php if ($userLoggedIn && isset($savedCart) && !empty($savedCart)): ?>
-        // If there are saved items in the database and we should load them
         const savedCart = <?php echo json_encode($savedCart); ?>;
 
-        // Ask user if they want to use their saved cart if there are items in local storage
+        // utilisation du panier sauvegardé ?
         if (cart.length > 0 && savedCart.length > 0) {
             if (confirm('Nous avons trouvé un panier sauvegardé dans votre compte. Voulez-vous l\'utiliser? (Cliquez sur Annuler pour garder votre panier actuel)')) {
                 cart = savedCart;
@@ -349,7 +356,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 showNotification('Panier restauré depuis votre compte');
             }
         } else if (savedCart.length > 0) {
-            // No local cart but saved cart exists
             cart = savedCart;
             localStorage.setItem('cart', JSON.stringify(cart));
             showNotification('Panier restauré depuis votre compte');
@@ -383,7 +389,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 return;
             }
 
-            // Disable button during processing
+            // enlever bouton pendant chargement
             const checkoutBtn = this;
             checkoutBtn.disabled = true;
             checkoutBtn.innerHTML = 'Traitement en cours...';
@@ -401,13 +407,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Clear cart in local storage
+                        // effacer le panier du local storage
                         localStorage.setItem('cart', JSON.stringify([]));
 
-                        // Show success message
+                        // créer notification de succès
                         showNotification('Votre commande a été créée avec succès!', 'success');
 
-                        // Redirect to confirmation page or orders page
+                        // redirection vers la page de confirmation de commande
                         setTimeout(() => {
                             window.location.href = `order_confirmation.php?order_id=${data.order_id}`;
                         }, 1500);
@@ -445,7 +451,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
             cartSummary.style.display = 'none';
 
-            // Clear cart in database if user is logged in and cart is empty
+
             if (userLoggedIn) {
                 saveCartToDatabase();
             }
@@ -521,7 +527,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             }, 500);
         }
 
-        // Mark cart as needing saving
+
         if (userLoggedIn) {
             cartNeedsSaving = true;
             scheduleCartSave();
@@ -571,12 +577,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 
     function scheduleCartSave() {
-        // Clear any existing timeout
+
         if (cartSaveTimeout) {
             clearTimeout(cartSaveTimeout);
         }
 
-        // Set a new timeout to save cart after 2 seconds of inactivity
+
         cartSaveTimeout = setTimeout(() => {
             if (cartNeedsSaving && userLoggedIn) {
                 saveCartToDatabase();
