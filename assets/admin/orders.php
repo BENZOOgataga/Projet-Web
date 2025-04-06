@@ -2,7 +2,7 @@
 require_once 'auth.php';
 require_once '../account-handling/settings.php';
 
-// Gestion de la suppression de commande
+// gestion de la suppression de commande
 if (isset($_POST['update_status'])) {
     $order_id = (int)$_POST['order_id'];
     $new_status = $_POST['new_status'];
@@ -10,7 +10,7 @@ if (isset($_POST['update_status'])) {
     $stmt->execute([$new_status, $order_id]);
 }
 
-// Récupération des commandes avec pagination
+// récup des commandes avec pagination
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $per_page = 10;
 $offset = ($page - 1) * $per_page;
