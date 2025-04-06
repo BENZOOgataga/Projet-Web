@@ -7,46 +7,55 @@ $userLoggedIn = isset($_SESSION['user_id']);
 $userId = $userLoggedIn ? $_SESSION['user_id'] : null;
 $flash = getFlash();
 
-if ($userLoggedIn) {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'save_cart') {
-        $cartData = $_POST['cart_data'] ?? '[]';
-
-        $stmt = $pdo->prepare("DELETE FROM user_cart WHERE user_id = ?");
-        $stmt->execute([$userId]);
-
-        $cartItems = json_decode($cartData, true);
-        if (!empty($cartItems)) {
-            $stmt = $pdo->prepare("INSERT INTO user_cart (user_id, product_id, product_name, price, category, image, quantity)
-                                  VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-            foreach ($cartItems as $item) {
-                $stmt->execute([
-                    $userId,
-                    $item['id'],
-                    $item['name'],
-                    $item['price'],
-                    $item['category'],
-                    $item['image'],
-                    $item['quantity']
-                ]);
-            }
-        }
-
-        echo json_encode(['success' => true]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'checkout') {
+    if (!$userLoggedIn) {
+        echo json_encode(['success' => false, 'message' => 'Vous devez être connecté pour finaliser votre commande.']);
         exit;
     }
 
-    $loadFromDb = true;
-    if (isset($_GET['keep_local']) && $_GET['keep_local'] === '1') {
-        $loadFromDb = false;
+    $cartData = $_POST['cart_data'] ?? '[]';
+    $cartItems = json_decode($cartData, true);
+
+    if (empty($cartItems)) {
+        echo json_encode(['success' => false, 'message' => 'Votre panier est vide.']);
+        exit;
     }
 
-    if ($loadFromDb) {
-        $stmt = $pdo->prepare("SELECT product_id as id, product_name as name, price, category, image, quantity
-                              FROM user_cart WHERE user_id = ?");
+    try {
+        $pdo->beginTransaction();
+
+        // Calculate total amount
+        $totalAmount = 0;
+        foreach ($cartItems as $item) {
+            $totalAmount += $item['price'] * $item['quantity'];
+        }
+
+        // Add tax (20%)
+        $totalAmount += $totalAmount * 0.2;
+
+        // Create order record
+        $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount, status) VALUES (?, ?, 'pending')");
+        $stmt->execute([$userId, $totalAmount]);
+        $orderId = $pdo->lastInsertId();
+
+        // Add order items
+        $stmt = $pdo->prepare("INSERT INTO order_items (order_id, article_id, quantity, price) VALUES (?, ?, ?, ?)");
+        foreach ($cartItems as $item) {
+            $stmt->execute([$orderId, $item['id'], $item['quantity'], $item['price']]);
+        }
+
+        // Clear user's cart
+        $stmt = $pdo->prepare("DELETE FROM user_cart WHERE user_id = ?");
         $stmt->execute([$userId]);
-        $savedCart = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $pdo->commit();
+        echo json_encode(['success' => true, 'order_id' => $orderId]);
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        echo json_encode(['success' => false, 'message' => 'Une erreur s\'est produite lors de la création de votre commande.']);
     }
+
+    exit;
 }
 ?>
 
@@ -368,13 +377,51 @@ if ($userLoggedIn) {
                 return;
             }
 
-            // Save cart one last time before checkout
-            saveCartToDatabase()
-                .then(() => {
-                    window.location.href = 'checkout.php';
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                showNotification('Votre panier est vide', 'warning');
+                return;
+            }
+
+            // Disable button during processing
+            const checkoutBtn = this;
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerHTML = 'Traitement en cours...';
+
+            fetch('panier.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'action': 'checkout',
+                    'cart_data': JSON.stringify(cart)
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Clear cart in local storage
+                        localStorage.setItem('cart', JSON.stringify([]));
+
+                        // Show success message
+                        showNotification('Votre commande a été créée avec succès!', 'success');
+
+                        // Redirect to confirmation page or orders page
+                        setTimeout(() => {
+                            window.location.href = `order_confirmation.php?order_id=${data.order_id}`;
+                        }, 1500);
+                    } else {
+                        showNotification(data.message || 'Une erreur s\'est produite', 'danger');
+                        checkoutBtn.disabled = false;
+                        checkoutBtn.innerHTML = 'Procéder au paiement';
+                    }
                 })
                 .catch(error => {
-                    console.error('Error saving cart:', error);
+                    console.error('Error processing order:', error);
+                    showNotification('Une erreur s\'est produite lors du traitement', 'danger');
+                    checkoutBtn.disabled = false;
+                    checkoutBtn.innerHTML = 'Procéder au paiement';
                 });
         });
     });

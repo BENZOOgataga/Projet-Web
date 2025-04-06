@@ -104,7 +104,7 @@ try {
                             <div class="promo-badge">Promo</div>
                         <?php endif; ?>
                         <img src="<?php echo (!empty($product['image_url']))
-                            ? '../images/products' . htmlspecialchars($product['category']) . '/' . htmlspecialchars($product['image_url'])
+                            ? '../images/products/' . htmlspecialchars($product['category']) . '/' . htmlspecialchars($product['image_url'])
                             : '../images/default.png'; ?>"
                              alt="<?php echo htmlspecialchars($product['name']); ?>">
                         <div class="product-info">
