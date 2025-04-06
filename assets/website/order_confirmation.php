@@ -3,7 +3,7 @@ session_start();
 require_once '../account-handling/settings.php';
 require_once '../utils/notifications.php';
 
-// Check if user is logged in
+// utilisateur login check
 $userLoggedIn = isset($_SESSION['user_id']);
 if (!$userLoggedIn) {
     setFlash('danger', 'Vous devez être connecté pour voir vos commandes.');
@@ -16,11 +16,11 @@ $flash = getFlash();
 $order = null;
 $orderItems = [];
 
-// Check if order_id is provided and is numeric
+// va chercher le order_id
 if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
     $orderId = (int)$_GET['order_id'];
 
-    // Get order details
+    // détail de la commande
     $stmt = $pdo->prepare("
         SELECT o.*, u.username, u.email
         FROM orders o
@@ -32,7 +32,7 @@ if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
     $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($order) {
-        // Get order items
+        // articles de commandes
         $stmt = $pdo->prepare("
             SELECT oi.*, a.name, a.image_url, a.category
             FROM order_items oi
