@@ -140,6 +140,7 @@ $contact_forms = $pdo->query("
 <script>
     document.getElementById('clear-storage-btn').addEventListener('click', function(e) {
         e.preventDefault();
+        // demande confirmation à l'utilisateur pour vider le cache
         if (confirm('Êtes-vous sûr de vouloir vider le cache local ? Cette action supprimera les données temporaires stockées dans votre navigateur.')) {
             localStorage.clear();
             sessionStorage.clear();
