@@ -466,6 +466,21 @@ body {
   margin-bottom: 2rem;
 }
 
+.login-required-section .card {
+  transition: all 0.3s;
+  border-radius: 15px;
+}
+
+.login-required-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-required-section .btn {
+  border-radius: 8px;
+  padding: 12px 24px;
+}
+
 @media (max-width: 576px) {
   .card-auth .card-body {
     padding: 1.5rem;
