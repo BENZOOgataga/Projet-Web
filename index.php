@@ -89,8 +89,8 @@ $accessories = getLatestProducts($pdo, 'accessories');
           <div class="container">
             <div class="row align-items-center">
               <div class="col-md-6">
-                <h1>MacBook Pro</h1>
-                <p>Découvrez la puissance fulgurante, l'autonomie longue durée et le design élégant du MacBook M2 — pensé pour les créatifs, les pros et votre quotidien.</p>
+                <h1>MacBook Air</h1>
+                <p>Découvrez la puissance fulgurante, l'autonomie longue durée et le design élégant du MacBook Air M2 — pensé pour les créatifs, les pros et votre quotidien.</p>
               </div>
               <div class="col-md-6">
                 <img src="assets/images/banner-products/product-1.png" alt="MacBook Pro" class="img-fluid">
