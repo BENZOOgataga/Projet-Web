@@ -2,7 +2,7 @@
 require_once 'auth.php';
 require_once '../account-handling/settings.php';
 
-// Handle image upload and product operations
+// gere upload images et opérations sur les produits
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_product']) || isset($_POST['edit_product'])) {
         $name = trim($_POST['name']);
@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $quantity = (int)$_POST['quantity'];
         $is_promo = isset($_POST['is_promo']) ? 1 : 0;
 
-        // Handle image upload
+        // gere upload image
         $image_url = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $upload_dir = '../images/products/' . $category . '/';
 
-            // Create directory if it doesn't exist
+            // créer le répertoire si n'existe pas
             if (!file_exists($upload_dir)) {
                 mkdir($upload_dir, 0777, true);
             }
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $product_id = (int)$_POST['product_id'];
 
-            // Get current image if no new image uploaded
+            // obtenir image actuelle si aucune nouvelle image n'est fournie
             if (!$image_url) {
                 $stmt = $pdo->prepare("SELECT image_url FROM articles WHERE id = ?");
                 $stmt->execute([$product_id]);
@@ -57,11 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Handle product deletion
+    // suppression produit
     if (isset($_POST['delete_product'])) {
         $product_id = (int)$_POST['delete_product'];
 
-        // Delete product image first
+        // supprime l'image du produit en premier
         $stmt = $pdo->prepare("SELECT image_url, category FROM articles WHERE id = ?");
         $stmt->execute([$product_id]);
         $product = $stmt->fetch();
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Get products with pagination
+// recupere les produits avec pagination
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $per_page = 10;
 $offset = ($page - 1) * $per_page;
@@ -243,6 +243,7 @@ $products->execute([$per_page, $offset]);
             const product = JSON.parse(this.dataset.product);
             const form = document.querySelector('form');
 
+            // remplir le formulaire avec les données du produit
             form.querySelector('[name="product_id"]').value = product.id;
             form.querySelector('[name="name"]').value = product.name;
             form.querySelector('[name="category"]').value = product.category;
@@ -259,6 +260,7 @@ $products->execute([$per_page, $offset]);
 
     document.querySelector('button[type="reset"]').addEventListener('click', function() {
         const form = this.closest('form');
+        // récupère formulaire / bouton de réinitialisation
         form.querySelector('[name="add_product"]').style.display = 'inline-block';
         form.querySelector('[name="edit_product"]').style.display = 'none';
     });
