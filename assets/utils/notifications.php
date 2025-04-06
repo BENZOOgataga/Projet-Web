@@ -1,4 +1,5 @@
 <?php
+// Page notification
 function setFlash($type, $message) {
     $_SESSION['flash'] = [
         'type' => $type,
