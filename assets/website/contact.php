@@ -90,7 +90,7 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
-
+# champs requis
     if (empty($_POST['name'] ?? '')) {
         $errors[] = 'Le champ "Votre nom" est requis.';
     }
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'] ?? '';
         $subject = $_POST['subject'] ?? '';
         $message = $_POST['message'] ?? '';
-
+# table contact du formulaire
         $sql = "INSERT INTO contact (user_id, name_contact, email_contact, subject_contact, message_contact)
             VALUES (:user_id, :name_contact, :email_contact, :subject_contact, :message_contact)";
 
@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <?php if (isset($_SESSION['success'])): ?>
                                 <div class="alert alert-success">
                                     <?php echo $_SESSION['success']; ?>
-                                    <?php unset($_SESSION['success']); // Supprime le message après avoir été affiché ?>
+                                    <?php unset($_SESSION['success']); // supprime le message après avoir été affiché ?>
                                 </div>
                             <?php endif; ?>
 
