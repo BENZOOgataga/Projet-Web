@@ -1,4 +1,5 @@
 <?php
+# la page contient le code de connexion à la base de données
 
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
