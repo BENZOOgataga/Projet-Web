@@ -4,15 +4,15 @@ require_once 'assets/account-handling/settings.php';
 // Fetch latest products for each category
 function getLatestProducts($pdo, $category, $limit = 3)
 {
-  $stmt = $pdo->prepare("
-        SELECT id, name, description, price, original_price, image_url, is_promo 
+    $stmt = $pdo->prepare("
+        SELECT id, name, description, price, original_price, image_url, is_promo, category
         FROM articles 
-        WHERE category = ? 
-        ORDER BY created_at DESC 
+        WHERE category = ?
+        ORDER BY created_at DESC
         LIMIT ?
     ");
-  $stmt->execute([$category, $limit]);
-  return $stmt->fetchAll();
+    $stmt->execute([$category, $limit]);
+    return $stmt->fetchAll();
 }
 
 $phones = getLatestProducts($pdo, 'phones');
@@ -153,7 +153,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <div class="promo-badge">En Promotion</div>
             <?php endif; ?>
               <img src="<?php echo (!empty($phone['image_url']))
-                  ? 'assets/images/products/' . htmlspecialchars($phone['category']) . '/' . htmlspecialchars($phone['image_url'])
+                  ? 'assets/images/products/' . htmlspecialchars('phones') . '/' . htmlspecialchars($phone['image_url'])
                   : 'assets/images/default.png'; ?>"
                    alt="<?php echo htmlspecialchars($phone['name']); ?>">
               <div class="product-info">
@@ -189,7 +189,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <div class="promo-badge">En Promotion</div>
             <?php endif; ?>
               <img src="<?php echo (!empty($laptop['image_url']))
-                  ? 'assets/images/products/' . htmlspecialchars($phone['category']) . '/' . htmlspecialchars($phone['image_url'])
+                  ? 'assets/images/products/' . htmlspecialchars('laptops') . '/' . htmlspecialchars($laptop['image_url'])
                   : 'assets/images/default.png'; ?>"
                    alt="<?php echo htmlspecialchars($laptop['name']); ?>">
               <div class="product-info">
@@ -225,7 +225,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
               <div class="promo-badge">En Promotion</div>
             <?php endif; ?>
               <img src="<?php echo (!empty($accessory['image_url']))
-                  ? 'assets/images/products/' . htmlspecialchars($phone['category']) . '/' . htmlspecialchars($phone['image_url'])
+                  ? 'assets/images/products/' . htmlspecialchars('accessories') . '/' . htmlspecialchars($accessory['image_url'])
                   : 'assets/images/default.png'; ?>"
                    alt="<?php echo htmlspecialchars($accessory['name']); ?>">
               <div class="product-info">
