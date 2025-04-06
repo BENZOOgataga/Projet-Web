@@ -7,7 +7,7 @@ $error = null;
 $alreadyLoggedIn = false;
 $flash = getFlash();
 
-// Vérification de si l'utilisateur est déjà connecté
+// vérification de si utilisateur déjà connecté
 if (isset($_SESSION['user_id'])) {
     $error = "Vous êtes déjà connecté. Veuillez d'abord vous déconnecter si vous souhaitez utiliser un autre compte.";
     $alreadyLoggedIn = true;
