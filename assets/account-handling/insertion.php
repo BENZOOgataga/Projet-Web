@@ -31,7 +31,7 @@ try {
 
         -- Accessoires
         ('Logitech MX Master 3', 'Souris sans fil ergonomique', 99.99, 109.99, 'mx3.png', 'accessories', 50, TRUE),
-        ('Logitech G502 HERO', 'Souris sans fil gaming', 99.99, 109.99, 'mx3.png', 'accessories', 50, FALSE),
+        ('Logitech G502 HERO', 'Souris sans fil gaming', 99.99, 109.99, 'g502.png', 'accessories', 50, FALSE),
         ('JBL Xtrem 40W', 'Enceinte JBL sans fil', 349.99, 379.99, 'xtrem40.png', 'accessories', 50, FALSE),
         ('Google Home', 'Assistant personnel intelligent', 99.99, 109.99, 'gh.png', 'accessories', 50, FALSE),
         ('AirPods Pro', 'Écouteurs sans fil avec réduction de bruit', 279.99, 299.99, 'p4.png', 'accessories', 30, TRUE),
