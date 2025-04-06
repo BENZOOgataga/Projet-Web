@@ -8,9 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Password validation
+    // validation mot de passe
     $password_pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
-
+    // verification des champs
     if (empty($username) || empty($email) || empty($password)) {
         $error = "Tous les champs sont requis.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $user_exist = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ? LIMIT 1");
         $user_exist->execute([$username, $email]);
-
+    // concordance des données
         if ($user_exist->rowCount() > 0) {
             $error = "Ce nom d'utilisateur ou cet email existe déjà.";
         } else {
