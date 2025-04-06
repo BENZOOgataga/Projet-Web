@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Page non trouvée - ReverseH4ck</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        .error-container {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        .error-message {
+            font-size: 2rem;
+            margin: 1rem 0 2rem;
+            color: #1a1a1a;
+        }
+        .error-description {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .error-image {
+            max-width: 300px;
+            margin-bottom: 2rem;
+        }
+        .btn-return {
+            transition: all 0.3s ease;
+        }
+        .btn-return:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.php">
+                <img src="assets/images/logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/website/products.php">Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/website/about_us.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/website/contact.php">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/website/panier.php">Panier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/account-handling/login.php">Mon Compte</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container error-container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <img src="assets/images/404.png" alt="404 Error" class="error-image">
+            <h2 class="error-message">Page non trouvée</h2>
+            <p class="error-description">
+                La page que vous recherchez n'existe pas ou a été déplacée.<br>
+                Veuillez vérifier l'URL ou retourner à la page d'accueil.
+            </p>
+            <a href="index.php" class="btn btn-primary btn-lg px-4 btn-return">
+                Retour à la page d'accueil
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="text-center">
+            <strong>ReverseH4ck</strong> &copy; Tous Droits Réservés
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
