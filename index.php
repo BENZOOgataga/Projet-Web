@@ -51,7 +51,7 @@ $accessories = getLatestProducts($pdo, 'accessories');
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Accueil</a>
+              <a class="nav-link" href="#">Accueil test</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="assets/website/products.php">Produits</a>
