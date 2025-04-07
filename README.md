@@ -1,7 +1,7 @@
 # Projet Web - ReverseH4ck (Moussa TAYAA, Steven MECHRAFI, Louis MORICE)
 
-https://projet.benzoogataga.com
-https://github.com/BENZOOgataga/Projet-Web
+Lien Web : https://projet.benzoogataga.com
+Lien GitHUBhttps://github.com/BENZOOgataga/Projet-Web
 
 ## Presentation
 
