@@ -5,37 +5,37 @@ Lien GitHUB : https://github.com/BENZOOgataga/Projet-Web
 
 ## Presentation
 
-Diaporama
+**Diaporama :**
 
 Voir presentation_projet dans le dossier ZIP
 
-Contexte
+**Contexte :**
 
 L'entreprise ReverseH4ck souhaite se developper sur le marche du e-commerce et a besoin d'une plateforme en ligne pour vendre ses produits. 
 Celle-ci se developpe dans le marche de la vente de multimedia et electromenager, en se demarcant par un style moderne et avec une qualite au rendez-vous
 
-Problematique : 
+** Problematique :**
 
 Comment concevoir une architecture web performante et scalable pour un site e-commerce afin d’assurer une navigation fluide et une gestion efficace des produits ?
 
-Objectifs : 
+**Objectifs :** 
 
 L'objectif du site est de permettre a l'entreprise ReverseH4ck de commercialiser en ligne ses produits multimedias et electromenagers, en offrant une experience utilisateur fluide, moderne et adaptee aux standards du e-commerce.
 
 
 ## Presentation Appli
 
-Choix technologiques :
+**Choix technologiques :**
 
 Pour le developpement du site, les environnements de developpement utilises sont Visual Studio Code et la suite JetBrains, permettant une flexibilite selon les preferences des developpeurs. La fonctionnalite Code With Me est egalement exploitee pour faciliter le travail collaboratif a distance en temps reel avec Valentin et Nassim.
 
-Outil de travail collaboratif :
+**Outil de travail collaboratif :**
 
 Github (Upload et hebergement en developpement avant de passer sur le serveur Web)
 SGBD : MariaDB (production), MySQL (bdd en local pour chacun de nous en developpement)
 IDE : VsCode (Moussa), Webstorm/PhpStorm/DataGrip (Jetbrains) pour Steven et Louis
 
-Repartition des taches :
+**Repartition des taches :**
 
 Moussa : Backend : Page login/register (PHP) relie a la bdd (cree par lui-meme), test de vulnerabilites web sur la phase finale du projet MOUSSA
 
@@ -50,7 +50,7 @@ Nassim : Collaboration externe dont correctifs de bugs (plus axé sur le projet 
 Tout le monde a travaillé et contribué au projet lourd (application) et léger (web) pour appliquer les compétences vus en cours
 
 
-Dates & Deadlines :
+**Dates & Deadlines :**
 
 Janvier/Février : Debut du projet lourd et léger
 Mars : Structure totale fini (bdd, git, html/css/php/js)
@@ -87,7 +87,7 @@ Pas de schéma MCD, MLD et manque de clarté présentation
 
 ## Conclusion 
 
-- Resumé : 
+**- Resumé :** 
 Nous developpons un site e-commerce parfaitement fonctionnel dedie a la vente de produits electromenagers et multimedia, destine aux particuliers et aux professionnels.
 Le site permettra de :
 - Consulter les produits par categorie
@@ -100,10 +100,10 @@ Le site permettra de :
 
 L’objectif est de proposer une plateforme simple, efficace et securisee pour faciliter l’achat en ligne.
 
-- Limites : On a pas relier les deux projets, pas utilise mm schéea de bdd (tables, cles differentes)
+**- Limites :** On a pas relier les deux projets, pas utilise mm schéea de bdd (tables, cles differentes)
 Manque de compatibilites
 
-- Perspectives d’evolution: Ajout de pages d’avis, personnaliser les produits, innovation sur les produits proposes, login/register mot de passe oublie (mais bon ya pas d’envoi d’email) 
+**- Perspectives d’evolution :** Ajout de pages d’avis, personnaliser les produits, innovation sur les produits proposes, login/register mot de passe oublie (mais bon ya pas d’envoi d’email) 
 
 ## Installation
 1. Clonez le depot GitHub :
