@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resource Management Game</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+<div class="game-container">
+    <header>
+        <h1>Resource Kingdom</h1>
+    </header>
+
+    <div class="resources-panel">
+        <div class="resource" id="wood">
+            <span class="resource-icon">🌲</span>
+            <span class="resource-value">0</span>
+        </div>
+        <div class="resource" id="stone">
+            <span class="resource-icon">🪨</span>
+            <span class="resource-value">0</span>
+        </div>
+        <div class="resource" id="food">
+            <span class="resource-icon">🍎</span>
+            <span class="resource-value">0</span>
+        </div>
+        <div class="resource" id="gold">
+            <span class="resource-icon">💰</span>
+            <span class="resource-value">0</span>
+        </div>
+    </div>
+
+    <div class="game-area">
+        <div class="gathering-area">
+            <h2>Gather Resources</h2>
+            <button id="gather-wood">Gather Wood</button>
+            <button id="gather-stone">Gather Stone</button>
+            <button id="gather-food">Gather Food</button>
+        </div>
+
+        <div class="buildings-area">
+            <h2>Buildings</h2>
+            <div class="building-options">
+                <div class="building" id="woodcutter">
+                    <h3>Woodcutter's Hut</h3>
+                    <p>+1 wood/sec</p>
+                    <p>Cost: 10 wood, 5 stone</p>
+                    <button class="build-btn" data-building="woodcutter">Build</button>
+                    <span class="building-count">0</span>
+                </div>
+                <div class="building" id="quarry">
+                    <h3>Stone Quarry</h3>
+                    <p>+1 stone/sec</p>
+                    <p>Cost: 15 wood, 5 stone</p>
+                    <button class="build-btn" data-building="quarry">Build</button>
+                    <span class="building-count">0</span>
+                </div>
+                <div class="building" id="farm">
+                    <h3>Farm</h3>
+                    <p>+1 food/sec</p>
+                    <p>Cost: 10 wood, 0 stone</p>
+                    <button class="build-btn" data-building="farm">Build</button>
+                    <span class="building-count">0</span>
+                </div>
+                <div class="building" id="market">
+                    <h3>Market</h3>
+                    <p>+1 gold/sec</p>
+                    <p>Cost: 25 wood, 15 stone, 10 food</p>
+                    <button class="build-btn" data-building="market">Build</button>
+                    <span class="building-count">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/game.js"></script>
+</body>
+</html>
