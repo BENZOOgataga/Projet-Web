@@ -1,0 +1,61 @@
+# Custom Project gitignore
+
+### General
+*.log
+*.tmp
+*.cache
+.DS_Store
+node_modules/
+vendor/
+.env
+
+### IDE Specific
+.vscode/
+.idea/
+
+### PHP
+composer.lock
+/vendor/
+
+### JavaScript
+package-lock.json
+yarn.lock
+
+### Build
+/dist/
+/build/
+
+### HTML/CSS/JS
+*.min.js
+*.min.css
+*.map
+
+### OS Specific
+Thumbs.db
+.DS_Store
+
+### Sensitive Files
+.env
+config.php
+credentials.json
+
+### Others
+*.sql
+*.sqlite
+/backups/
+uploads/
+
+### Logs
+*.log
+logs/
+
+### Temporary Files
+*.swp
+*.swo
+*.bak
+*.old
+*.tmp
+
+### Cache
+/cache/
+/.cache/
